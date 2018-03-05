@@ -13,7 +13,6 @@
 
 library(tidyr)
 library(dplyr)
-library(glue)
 library(tibble)
 
 assign_screening <- function(articles, team_df, seed = 1){
@@ -31,9 +30,7 @@ assign_screening <- function(articles, team_df, seed = 1){
         mutate(reviewer2 = sample(team_df$name[team_df$name != reviewer1], size = 1, prob = team_df$screening_effort[team_df$name != reviewer1])) %>%
         gather(position, reviewer, reviewer1:reviewer2) %>%
         # Add columns for the manual screening
-        mutate(decision = NA_character_,
-               reason = NA_character_) %>%
-        select(decision, reason, title, abstract, everything()) %>%
+        select(title, abstract, everything()) %>%
         group_by(reviewer) %>%
         # Duplicate the reviewer variable, to keep name in df even after nesting
         mutate(name = reviewer) %>%
