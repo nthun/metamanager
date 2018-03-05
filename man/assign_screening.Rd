@@ -3,15 +3,18 @@
 \name{assign_screening}
 \alias{assign_screening}
 \title{Assign articles for screening to raters reproducibly}
+\usage{
+assign_screening(articles, team_df, seed = 1)
+}
 \arguments{
 \item{df}{data frame of articles}
 
-\item{team}{a data.frame of team members with name<chr>, and effort <dbl>:0-1 variables}
+\item{team}{a data.frame of team members with name<chr>, and effort<dbl>}
 
 \item{seed}{a random seed <int> for reproducibility}
 }
 \value{
-A data frame that contains the article info and the assigned reviewers
+A data frame that contains the article info with variables to use for manual screening, and the assigned reviewers
 }
 \description{
 Randomly assign articles to two different team members for screening. The function will create files for each team member. The files will contain article data with the first two rows being the decision and reason columns, that can be filled manually during the screening.

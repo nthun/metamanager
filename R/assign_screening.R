@@ -2,13 +2,15 @@
 #'
 #' Randomly assign articles to two different team members for screening. The function will create files for each team member. The files will contain article data with the first two rows being the decision and reason columns, that can be filled manually during the screening.
 #' @name assign_screening
+#' @usage assign_screening(articles, team_df, seed = 1)
 #' @param df data frame of articles
-#' @param team a data.frame of team members with name<chr>, and effort <dbl>:0-1 variables
+#' @param team a data.frame of team members with name<chr>, and effort<dbl>
 #' @param seed a random seed <int> for reproducibility
-#' @return A data frame that contains the article info and the assigned reviewers
+#' @return A data frame that contains the article info with variables to use for manual screening, and the assigned reviewers
 #' @examples
 #' assign_screening(merged_articles, team_df, 1)
 # TODO: Feature: Possibility to assign an article to more than two reviewers
+
 library(tidyr)
 library(dplyr)
 library(glue)
