@@ -4,12 +4,12 @@
 \alias{make_id}
 \title{Make a tidy unique identifier in a data frame of articles}
 \usage{
-make_id(df, .id_hierarchy = id_hierarchy)
+make_id(df, identifier = c("doi","pmid","psyid"))
 }
 \arguments{
 \item{df}{data frame that has identifiers}
 
-\item{.id_hierarchy}{data frame with identifier<chr>, and rank<num> columns that define the rank (importance) of an identifier. Smaller number means more important}
+\item{identifier}{a vector of identifiers <chr> in decreasing order by importance}
 }
 \value{
 A data frame without individual id columns, and with new identifier and id columns that contain the best available identifier and the id, respectively
@@ -18,5 +18,5 @@ A data frame without individual id columns, and with new identifier and id colum
 Select the best id based on a pre-defined hierarchy, and keep only that for the article
 }
 \examples{
-make_id(df)
+make_id(df, c("doi","pmid","psyid"))
 }
