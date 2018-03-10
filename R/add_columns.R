@@ -18,6 +18,7 @@
 
 add_columns <- function(df, columns, before = TRUE){
     stopifnot(  is.data.frame(df),
+                length(intersect(names(df), columns)) > 0,
                 length(columns) > 0)
     varnames <- rep(NA_character_, length(columns))
     names(varnames) <- columns
