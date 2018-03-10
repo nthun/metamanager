@@ -10,13 +10,21 @@ add_columns(df, columns)
 \item{df}{data frame of articles}
 
 \item{columns}{a vector of column names <str> to be added}
+
+\item{before}{<lgl> Should the new variables be in the beginning of new df (default)}
 }
 \value{
 A data frame that contains the article info with empty columns for manual data entry
 }
 \description{
-Add columns to a dataframe that can be used to manual coding
+Add columns to a dataframe that can be used for manual coding
 }
 \examples{
-add_columns(articles, c("decision","reason"))
+add_columns(articles, c("decision","reason"), before = TRUE)
+
+newcol <- c("x","y")
+iris \%>\%
+    as_tibble() \%>\%
+    add_columns(newcol, before = FALSE) \%>\%
+    select()
 }

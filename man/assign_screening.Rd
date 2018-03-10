@@ -7,7 +7,7 @@
 assign_screening(articles, team_df, seed = 1)
 }
 \arguments{
-\item{df}{data frame of articles}
+\item{df}{data frame of articles, should have at least title<str> and abstract<str> columns}
 
 \item{team}{a data.frame of team members with name<chr>, and effort<dbl>}
 
