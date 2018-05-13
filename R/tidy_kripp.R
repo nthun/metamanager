@@ -8,13 +8,11 @@
 #' @examples
 #' tidy_kripp(screener_12_kripp)
 
-library(tibble)
-
 tidy_kripp <- function(kripp){
     stopifnot(is.list(kripp),
-              has_name(kripp, c("method","data.level","raters","subjects","value")))
+              tibble::has_name(kripp, c("method","data.level","raters","subjects","value")))
 
-    tibble(
+    tibble::tibble(
         method = kripp$method,
         level = kripp$data.level,
         raters = kripp$raters,
