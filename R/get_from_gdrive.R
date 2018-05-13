@@ -4,7 +4,7 @@
 #' @name get_from_gdrive
 #' @usage get_from_gdrive(gdrive_path)
 #' @param gdrive_path A google drive path where the sheets are stored
-#' @return The content of all spreadsheets in the google drive folder, collapsed into one tibble
+#' @return The content of all spreadsheets in the google drive folder in one nested tibble
 #' @examples
 #' get_from_gdrive("Research/meta-analysis12/Extraction1/")
 # TODO: error handling: check if all files are google sheets
@@ -26,8 +26,7 @@ get_from_gdrive <- function(gdrive_path){
 
         drive_list$result %>%
             transmute(file = name,
-                      sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1))) %>%
-            tidyr::unnest(sheet)
+                      sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1)))
     }
 }
 
