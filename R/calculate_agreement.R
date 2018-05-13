@@ -1,22 +1,23 @@
 #' Calculate inter-rater agreement statistics beween team members
 #'
 #' Calculate agreement summaries and Krippendorff's alpha for all reviewer pairs. Krippendorff's alpha can be calculated for nominal, ordinal, interval, and ratio scale variables.
-#' @name calculate_screener_irr
-#' @usage calculate_screener_irr(articles, kr_method = "nominal")
+#' @name calculate_agreement
+#' @usage calculate_agreement(articles, kr_method = "nominal")
 #' @param articles a data frame that contains the screened articles, and having a name<chr> column
 #' @param kr_method The scale of the decision variable. Can be nominal (default), ordinal, interval, or ratio
 #' @return A data frame containing agreement summaries, and the Krippendorff's alpha statistic for all pairs of screeners. invalid_decision<int> is the total number of decisions that are not 1 or 0.
 #' @examples
-#' calculate_screener_irr(articles)
+#' calculate_agreement(articles)
+# TODO: use explicit namespace
 
 library(dplyr)
 library(tidyr)
 library(purrr)
 library(tibble)
 library(irr)
-source("R/tidy_kripp.R")
+source("script/functions/tidy_kripp.R")
 
-calculate_screener_irr <- function(articles, kr_method = "nominal"){
+calculate_agreement <- function(articles, kr_method = "nominal"){
     stopifnot(has_name(articles, c("name","decision")))
 
     # Create a nested dataframe from all unrepeated combinations of names
@@ -55,12 +56,11 @@ calculate_screener_irr <- function(articles, kr_method = "nominal"){
                 # Create tidy Krippendorff's alpha output tables for all pairs
                 irr = map(
                     decision_table,
-                    ~ .x %>%
-                        select(starts_with("decision")) %>%
+                    ~select(.x, starts_with("decision")) %>%
                         mutate_all(as.numeric) %>%
                         drop_na() %>%
                         t() %>%
-                        kripp.alpha(method = kr_method) %>%
+                        irr::kripp.alpha(method = kr_method) %>%
                         tidy_kripp() %>%
                         as_data_frame()),
                 # Create summary statistics for all pairs
