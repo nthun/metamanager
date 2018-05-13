@@ -4,7 +4,7 @@
 \alias{save_locally}
 \title{Save several files locally based on a nesting variable}
 \usage{
-save_locally(df, local_path = NA_character_, nesting = NA_character_, postfix = NA_character_, overwrite = FALSE)
+save_locally(df, local_path = NULL, nesting = NULL, postfix = NULL, overwrite = FALSE)
 }
 \arguments{
 \item{df}{a full path <chr> that contains .csv-s to upload to gdrive}

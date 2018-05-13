@@ -7,7 +7,8 @@
 #' @param correct_terms string vector containing the correct terms
 #' @return A corrected string vector that can only contain the correct terms
 #' @examples
-#' articles %>% mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
+#' articles %>% 
+#'  mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
 
 library(stringdist)
 library(dplyr)

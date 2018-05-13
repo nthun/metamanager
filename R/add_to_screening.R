@@ -16,7 +16,6 @@
 
 library(tidyr)
 library(dplyr)
-source("R/assign_screening.R")
 
 add_to_screening <- function(old_article_df, new_article_df, team_df, seed = 1){
     # The work-in-progress files are in duplicate, so duplicates should be removed first

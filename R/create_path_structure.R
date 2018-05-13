@@ -8,11 +8,12 @@
 #' @examples
 #' # Creating default folder structure
 #' create_path_structure(c("research/meta/etraction","research/meta/screening"))
-create_path_structure <- function(folders){
 
+library(dplyr)
+
+create_path_structure <- function(folders){
     stopifnot(length(folders) > 0)
 
-    library(dplyr)
     # Cumulative paste function, based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable
     # Created by https://stackoverflow.com/users/2414948/alexis-laz
     cumulative_paste <- function(x, .sep = " ")
