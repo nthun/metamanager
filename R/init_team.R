@@ -4,7 +4,7 @@
 #' @name init_team
 #' @usage init_team(gdrive_path = NULL, name = "meta_team", browse = TRUE)
 #' @param gdrive_path a full (new) gdrive path <chr>, preferably with / at the end
-#' @param name a vector <chr> of folder names to create in path
+#' @param file_name a vector <chr> of folder names to create in path
 #' @param browse should the team file open in the browser? <lgl>
 #' @return no output, this function exerts a side-effect
 #' @examples
@@ -15,17 +15,18 @@
 
 library(dplyr)
 
-init_team <- function(gdrive_path = NULL, name = "meta_team", browse = TRUE){
+init_team <- function(gdrive_path = NULL, file_name = "meta_team", browse = TRUE){
 
     stopifnot(length(gdrive_path) == 1,
               length(name) == 1)
 
     # Run listing safely, so if fails, does not stop the function
     safe_drive_ls <- purrr::safely(googledrive::drive_ls)
-    drive_list <- safe_drive_ls(googledrive::gdrive_path)
+    drive_list <- safe_drive_ls(gdrive_path)
 
-    # Stop if the path contains files and can't overwrite
-    stopifnot((nrow(drive_list$result) > 0))
+    # Stop if the path does not exist, or there is a file with the same name
+    stopifnot(nrow(drive_list$result) > 0,
+              nrow(filter(drive_list$result, name == file_name)) == 0)
 
     # Create template table and save to
     tibble(name = NA_character_,
