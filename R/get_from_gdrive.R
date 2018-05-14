@@ -25,7 +25,7 @@ get_from_gdrive <- function(gdrive_path){
     if (is.null(drive_list$error)) {
 
         drive_list$result %>%
-            transmute(file = name,
+            dplyr::transmute(file = name,
                       sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1)))
     }
 }

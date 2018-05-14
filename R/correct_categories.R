@@ -7,21 +7,17 @@
 #' @param correct_terms string vector containing the correct terms
 #' @return A corrected string vector that can only contain the correct terms
 #' @examples
-#' articles %>% 
+#' articles %>%
 #'  mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
-
-library(stringdist)
-library(dplyr)
-library(stringr)
 
 correct_categories <- function(to_be_corrected, correct_terms) {
     stopifnot(is.character(to_be_corrected),
               is.character(correct_terms))
 
-    correct_terms[amatch(
+    correct_terms[stringdist::amatch(
                     to_be_corrected %>%
-                        str_to_lower() %>%
-                        str_replace("\\?", NA_character_),
+                        stringr::str_to_lower() %>%
+                        stringr::str_replace("\\?", NA_character_),
                     correct_terms,
                     maxDist = 2,
                     method = "cosine"

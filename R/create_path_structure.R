@@ -11,29 +11,28 @@
 
 library(dplyr)
 
-create_path_structure <- function(folders){
+create_path_structure <- function(folders = NULL){
     stopifnot(length(folders) > 0)
 
-    # Cumulative paste function, based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable
-    # Created by https://stackoverflow.com/users/2414948/alexis-laz
     cumulative_paste <- function(x, .sep = " ")
         Reduce(function(x1, x2) paste(x1, x2, sep = .sep), x, accumulate = TRUE)
 
-
     folders %>%
         stringr::str_split("/", simplify = TRUE) %>%
-        as_tibble() %>%
+        tibble::as_tibble() %>%
         # Add an identifier to path so later grouping can be based on separathe paths
-        mutate(path_id = row_number()) %>%
+        dplyr::mutate(path_id = row_number()) %>%
         # Gather into long format
         tidyr::gather(level, folder, -path_id) %>%
         # Drop empty folder names
-        filter(folder != "") %>%
+        dplyr::filter(folder != "") %>%
         # Cumulatively paste folder names
-        group_by(path_id) %>%
-        mutate(full_path = cumulative_paste(folder, .sep = "/")) %>%
-        ungroup() %>%
+        dplyr::group_by(path_id) %>%
+        dplyr::mutate(full_path = cumulative_paste(folder, .sep = "/")) %>%
+        dplyr::ungroup() %>%
         # Remove redundant folders
-        distinct(full_path, .keep_all = TRUE) %>%
-        pull(full_path)
+        dplyr::distinct(full_path, .keep_all = TRUE) %>%
+        dplyr::pull(full_path)
 }
+
+# DISCLAIMER: Cumulative paste function is based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable created by https://stackoverflow.com/users/2414948/alexis-laz

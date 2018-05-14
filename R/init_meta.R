@@ -8,9 +8,9 @@
 #' @examples
 #' # Creating default folder structure and team file
 #' init_meta("research/meta")
-#' TODO: A bug makes the function to initialize the gdrive_path directory twice, therefor it breaks halfway
+#' # TODO: A bug makes the function to initialize the gdrive_path directory twice, therefor it breaks halfway
 
-init_meta <- function(gdrive_path){
+init_meta <- function(gdrive_path = NULL){
     init_gdrive(gdrive_path)
     init_meta(gdrive_path)
 }

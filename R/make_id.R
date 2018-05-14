@@ -9,36 +9,28 @@
 #' @examples
 #' make_id(df, c("doi","pmid","psyid"))
 
-library(tidyr)
-library(dplyr)
-
 make_id <- function(df,
                     identifier = c("doi","pmid","psyid")){
     # Stop if there are no valid identifiers in the data frame
     stopifnot(is.data.frame(df),
               length(intersect(names(df), identifier)) > 0)
     # Create a tbl of identifiers for merging
-    id_hierarchy <- tibble(identifier = identifier,
+    id_hierarchy <- tibble::tibble(identifier = identifier,
                            id_rank = seq(1L, length(identifier), 1L))
 
     df %>%
         # Gather all available identifiers
-        gather(identifier, id, intersect(names(.), identifier)) %>%
-        drop_na(id) %>%
+        tidyr::gather(identifier, id, dplyr::intersect(names(.), identifier)) %>%
+        tidyr::drop_na(id) %>%
         # Get information about the rank of the identifier
-        left_join(id_hierarchy, by = "identifier") %>%
-        group_by(title) %>%
+        dplyr::left_join(id_hierarchy, by = "identifier") %>%
+        dplyr::group_by(title) %>%
         # Find the best available identifier for the article
-        mutate(best_id = min(id_rank)) %>%
-        ungroup() %>%
+        dplyr::mutate(best_id = min(id_rank)) %>%
+        dplyr::ungroup() %>%
         # Remove all identifiers that are less important
-        filter(id_rank == best_id) %>%
+        dplyr::filter(id_rank == best_id) %>%
         # Remove clutter and rearrange variables
-        select(-id_rank, -best_id) %>%
-        select(identifier, id, source, everything())
+        dplyr::select(-id_rank, -best_id) %>%
+        dplyr::select(identifier, id, source, dplyr::everything())
 }
-
-
-
-
-

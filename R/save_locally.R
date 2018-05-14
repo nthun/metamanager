@@ -29,13 +29,13 @@ save_locally <- function(df, local_path = NULL, nesting = NULL, postfix = NULL, 
     # Create a nested tibble
     df_nested <-
         df %>%
-        group_by(!!nesting) %>%
-        nest()
+        dplyr::group_by(!!nesting) %>%
+        tidyr::nest()
     # Create the directory
     if (dir.exists(dir) & overwrite == TRUE) unlink(dir, recursive = TRUE)
     dir.create(dir)
     # Save the screening files
-    purrr::walk2(df_nested[, nesting], df_nested[, "data"], ~readr::write_excel_csv(.y, glue::glue("{dir}/{.x}_{postfix}.csv"), na = ""))
-    glue::glue("{nrow(df_nested)} files saved in {dir}")
+    purrr::walk2(df_nested[, nesting], df_nested[, "data"], ~readr::write_excel_csv(.y, stringr::str_glue("{dir}/{.x}_{postfix}.csv"), na = ""))
+    stringr::str_glue("{nrow(df_nested)} files saved in {dir}")
 }
 

@@ -2,7 +2,7 @@
 #'
 #' Create a template team file on google drive and open it in the browser
 #' @name init_team
-#' @usage init_team(gdrive_path = NULL, name = "meta_team", browse = TRUE)
+#' @usage init_team(gdrive_path = NULL, file_name = "meta_team", browse = TRUE)
 #' @param gdrive_path a full (new) gdrive path <chr>, preferably with / at the end
 #' @param file_name a vector <chr> of folder names to create in path
 #' @param browse should the team file open in the browser? <lgl>
@@ -12,8 +12,6 @@
 #' init_team("research/meta", "My meta-analysis team")
 #' # Create with default name and without editing in browser
 #' init_team("research/meta", browse = FALSE)
-
-library(dplyr)
 
 init_team <- function(gdrive_path = NULL, file_name = "meta_team", browse = TRUE){
 
@@ -26,10 +24,10 @@ init_team <- function(gdrive_path = NULL, file_name = "meta_team", browse = TRUE
 
     # Stop if the path does not exist, or there is a file with the same name
     stopifnot(nrow(drive_list$result) > 0,
-              nrow(filter(drive_list$result, name == file_name)) == 0)
+              nrow(dplyr::filter(drive_list$result, name == file_name)) == 0)
 
     # Create template table and save to
-    tibble(name = NA_character_,
+    tibble::tibble(name = NA_character_,
            role = NA_character_,
            screening_effort = NA_real_,
            extraction_effort = NA_real_) %>%
