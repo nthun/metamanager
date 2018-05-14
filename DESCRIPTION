@@ -9,20 +9,21 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Imports:
-    utils,
-    dplyr,
-    tidyr,
-    readr,
-    fs,
-    rlang,
-    tibble,
-    stringr,
-    purrr,
-    glue,
-    googledrive,
-    googlesheets,
-    magrittr,
-    stringdist,
-    irr,
-    attempt
-Suggests: testthat
+    utils (>= 3.5.0),
+    dplyr (>= 0.7.4),
+    tidyr (>= 0.8.0),
+    readr (>= 1.1.1),
+    fs (>= 1.2.2),
+    rlang (>= 0.2.0),
+    tibble (>= 1.4.2),
+    stringr (>= 1.3.1),
+    purrr (>= 0.2.4),
+    glue (>= 1.2.0),
+    googledrive (>= 0.1.1),
+    googlesheets (>= 0.2.2),
+    magrittr (>= 1.5),
+    stringdist (>= 0.9.4.7),
+    irr (>= 0.84),
+    attempt (>= 0.2.1)
+Suggests: 
+    testthat

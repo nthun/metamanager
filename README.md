@@ -13,3 +13,4 @@ The package provides functions for the following meta-analysis tasks:
 
 **!! The package is under development, and should be ready in May !! I will finish the first usable version of the package for the [eRum](http://2018.erum.io/) conference in Budapest. Please check back after that point if interested! **
 
+[![Travis build status](https://travis-ci.org/nthun/metamanager.svg?branch=master)](https://travis-ci.org/nthun/metamanager)
