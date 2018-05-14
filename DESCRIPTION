@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person("Tamas", "Nagy", email = "nagy.tamas@ppk.elte.hu", role = c("aut", "cre"))
 Description: A package for reproducible meta-analysis workflow and file management. Using the package helps to implement the requirements of the PRISMA checklist. The package provides functions for collaborative work through Google drive. The functions can be easily arranged into human readable pipelines using the pipe operator. The package was created with the tidytools manifesto in sight.
 Depends: R (>= 3.4.3)
-License: file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
@@ -18,10 +18,11 @@ Imports:
     tibble,
     stringr,
     purrr,
-    glue, 
+    glue,
     googledrive,
-    googlesheets, 
+    googlesheets,
     magrittr,
     stringdist,
-    irr
+    irr,
+    attempt
 Suggests: testthat
