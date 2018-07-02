@@ -12,7 +12,7 @@
 
 library(dplyr)
 
-get_from_gdrive <- function(gdrive_path){
+get_from_gdrive <- function(gdrive_path, all_char = TRUE){
 
     # Run listing safely, so if fails, does not stop the function
     safe_drive_ls <- purrr::safely(googledrive::drive_ls)
@@ -22,11 +22,19 @@ get_from_gdrive <- function(gdrive_path){
     if (!is.null(drive_list$error)) warning("The specified google drive inventory does not exist")
 
     # If there are no errors in the listing, download the files
-    if (is.null(drive_list$error)) {
+    if (is.null(drive_list$error)){
+        if (all_char == FALSE){
+            drive_list$result %>%
+                transmute(file = name,
+                          # Try to guess the col_types
+                          sheet = map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1)))
+        } else {
+            drive_list$result %>%
+                transmute(file = name,
+                          # All col_types are read as character
+                          sheet = map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1, col_types = cols(.default = "c"))))
 
-        drive_list$result %>%
-            dplyr::transmute(file = name,
-                      sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1)))
+        }
     }
 }
 
