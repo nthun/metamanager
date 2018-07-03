@@ -4,12 +4,12 @@
 \alias{add_columns}
 \title{Add named empty columns to a dataframe}
 \usage{
-add_columns(df, columns)
+add_columns(df = NULL, columns = NULL, before = TRUE)
 }
 \arguments{
 \item{df}{data frame of articles}
 
-\item{columns}{a vector of column names <str> to be added}
+\item{columns}{a vector of column names <chr> to be added}
 
 \item{before}{<lgl> Should the new variables be in the beginning of new df (default)}
 }
@@ -20,11 +20,5 @@ A data frame that contains the article info with empty columns for manual data e
 Add columns to a dataframe that can be used for manual coding
 }
 \examples{
-add_columns(articles, c("decision","reason"), before = TRUE)
-
-newcol <- c("x","y")
-iris \%>\%
-    as_tibble() \%>\%
-    add_columns(newcol, before = FALSE) \%>\%
-    select()
+add_columns(df = iris, columns = c("x","y"), before = FALSE)
 }
