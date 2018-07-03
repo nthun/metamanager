@@ -5,6 +5,7 @@
 #' @usage create_path_structure(folders = NULL)
 #' @param folders a vector of paths <chr> that does not have to contain all folder levels separately
 #' @return a vctor <chr> of paths that fully define a folder structure
+#' @source Cumulative paste function is based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable created by https://stackoverflow.com/users/2414948/alexis-laz
 #' @examples
 #' # Creating default folder structure
 #' create_path_structure(c("research/meta/etraction","research/meta/screening"))
@@ -34,5 +35,3 @@ create_path_structure <- function(folders = NULL){
         dplyr::distinct(full_path, .keep_all = TRUE) %>%
         dplyr::pull(full_path)
 }
-
-# DISCLAIMER: Cumulative paste function is based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable created by https://stackoverflow.com/users/2414948/alexis-laz
