@@ -14,6 +14,7 @@
 #'               c = as.character(c(1:2, letters[1:3])),
 #'               d = as.character(c(letters[4:5], c(3:5))))
 #' get_conversion_warnings(df, as.integer)
+#' TODO: check if the conversion function is one of as.integer, as.numeric, as.double, ...
 
 get_conversion_warnings <- function(df, fun){
 
