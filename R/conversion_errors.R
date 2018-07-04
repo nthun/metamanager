@@ -21,6 +21,7 @@
 # TODO: error handling!
 # TODO: This function should be a wrapper arounf get conversion watnings, with limited number of conversion functions, etc.
 # TODO: Make fun column to be human readable
+# TODO: make this one single function for all conversion checks that contains all required conversions in one step. May require a list format for columns and funs!
 
 conversion_errors <- function(df, columns, fun){
 
