@@ -10,8 +10,6 @@
 # TODO: error handling: check if all files are google sheets
 # TODO: data validation, e.g. check if all the files have the right format
 
-library(dplyr)
-
 get_from_gdrive <- function(gdrive_path, all_char = TRUE){
 
     # Run listing safely, so if fails, does not stop the function
@@ -25,14 +23,17 @@ get_from_gdrive <- function(gdrive_path, all_char = TRUE){
     if (is.null(drive_list$error)){
         if (all_char == FALSE){
             drive_list$result %>%
-                transmute(file = name,
-                          # Try to guess the col_types
-                          sheet = map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1)))
+                dplyr::transmute(file = name,
+                                 # Try to guess the col_types
+                                 sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>%
+                                                         googlesheets::gs_read(1)))
         } else {
             drive_list$result %>%
-                transmute(file = name,
-                          # All col_types are read as character
-                          sheet = map(id, ~googlesheets::gs_key(.x) %>% googlesheets::gs_read(1, col_types = cols(.default = "c"))))
+                dplyr::transmute(file = name,
+                                 # All col_types are read as character
+                                 sheet = purrr::map(id, ~googlesheets::gs_key(.x) %>%
+                                                         googlesheets::gs_read(1,
+                                                                               col_types = readr::cols(.default = "c"))))
 
         }
     }
