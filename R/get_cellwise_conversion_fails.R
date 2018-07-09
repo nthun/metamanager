@@ -1,8 +1,8 @@
 #' Cell-wise warnings for conversion failiures
 #'
 #' Helper function to get conversion warnings separately for each cell
-#' @name get_conversion_warnings
-#' @usage get_conversion_warnings(df, fun)
+#' @name get_cellwise_conversion_fails
+#' @usage get_cellwise_conversion_fails(df, fun)
 #'
 #' @param df data frame
 #' @param fun unquoted conversion function name without ()
@@ -13,9 +13,9 @@
 #'                       b = as.double(1:5),
 #'                       c = as.character(c(1:2, letters[1:3])),
 #'                       d = as.character(c(letters[4:5], c(3:5))))
-#' get_conversion_warnings(df, as_integer)
+#' get_cellwise_conversion_fails(df, as_integer)
 
-get_conversion_warnings <- function(df, fun){
+get_cellwise_conversion_fails <- function(df, fun){
 
     # Error handling
     stopifnot(is.data.frame(df),
