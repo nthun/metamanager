@@ -1,6 +1,6 @@
 #' Checks for coversion errors in nested dataframes
 #'
-#' Checks if a specific conversion produces any errors in the nested dfs that has (partly) the same variable names.
+#' Checks if a specific conversion produces any errors in the nested dfs.
 #' @name get_conversion_fails
 #' @usage get_conversion_fails(df, columns, convert_to)
 #'
@@ -19,33 +19,35 @@
 #'   tidyr::nest()
 #'
 #' get_conversion_fails(df, columns = c("x", "y"), convert_to = "integer")
-#' TODO:
+#' TODO: BUG: too much data returned if only one column is provided for conversion
 
-get_conversion_fails <- function(df, columns = NULL, convert_to = c("integer","numeric","double")){
+get_conversion_fails <- function(df, columns = NULL, convert_to = c("integer","double","logical")){
 
     # Error handling
     stopifnot(is.data.frame(df),
               is.character(columns),
               length(columns) > 0,
               convert_to %in% c("integer", "double", "logical"),
-              length(convert_to) == 1)
+              length(convert_to) == 1,
+              rlang::has_name(df, columns))
 
     # Use only the first argument of convert_to, and make it a function name
     fun <- match.fun(paste0("as_", convert_to[1]))
 
     df %>%
-        mutate(file,
-               fun = convert_to,
+        mutate(
                # Create a nested with cell-wise conversion warnings
-               conversion_warnings = purrr::map(sheet,
+               conversion_errors = purrr::map(sheet,
                                                 ~dplyr::select(.x, dplyr::one_of(columns)) %>%
                                                     get_cellwise_conversion_fails(., fun = !!fun)),
-               conversion_sums = purrr::map(conversion_warnings,
-                                            ~dplyr::summarise_all(.x, ~sum(!is.na(.)))),
-               report = purrr::map(conversion_sums,
-                            ~tidyr::gather(.x, variable, value) %>%
-                             dplyr::group_by(variable) %>%
-                             dplyr::summarise(conversion_fails = mean(value)) %>%
-                             dplyr::filter(conversion_fails != 0))) %>%
+               conversion_sums = purrr::map(conversion_errors,
+                                            ~dplyr::summarise_all(.x, ~sum(!is.na(.))))) %>%
+        transmute(file,
+                  fun = convert_to,
+                  report = purrr::map(conversion_sums,
+                                    ~tidyr::gather(.x, variable, value) %>%
+                                     dplyr::group_by(variable) %>%
+                                     dplyr::summarise(conversion_fails = mean(value)) %>%
+                                     dplyr::filter(conversion_fails != 0))) %>%
         tidyr::unnest(report)
 }
