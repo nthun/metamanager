@@ -10,6 +10,7 @@
 #' @examples
 #' upload_to_gdrive("/temporary_files/", "temp_files/", overwrite = TRUE)
 # TODO: TEST
+# TODO: ? use fs instead of base file handling
 
 upload_to_gdrive <- function(local_path = NULL, gdrive_path = NULL, overwrite = FALSE){
     stopifnot(length(local_path) > 0,

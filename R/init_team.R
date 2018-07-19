@@ -28,18 +28,18 @@ init_team <- function(gdrive_path = NULL, file_name = "meta_team", browse = TRUE
 
     # Create template table and save to
     tibble::tibble(name = NA_character_,
-           role = NA_character_,
-           screening_effort = NA_real_,
-           extraction_effort = NA_real_) %>%
+                   role = NA_character_,
+                   screening_effort = NA_real_,
+                   extraction_effort = NA_real_) %>%
     readr::write_excel_csv(path = paste0(tempdir(), "/team_df.csv"), na = "")
 
 
     team_file <-
         googledrive::drive_upload(
-            media = paste0(tempdir(), "/team_df.csv"),
-            name = name,
-            path = gdrive_path,
-            type = "spreadsheet"
+                                media = paste0(tempdir(), "/team_df.csv"),
+                                name = name,
+                                path = gdrive_path,
+                                type = "spreadsheet"
         )
 
     if (browse == TRUE){

@@ -12,11 +12,9 @@
 #' @examples
 #' save_locally(articles, "d:/temp/screening/", nesting = "reviewer", postfix = "",overwrite = TRUE)
 # TODO: test!
-# TODO: nesting variable does not works well. Should come up with something better.
-
-library(dplyr)
-library(tidyr)
-library(rlang)
+# TODO: nesting variable does not work well. Should come up with something better.
+# TODO: Make it tidyeval
+# TODO: ? use fs instead of base file operations
 
 save_locally <- function(df, local_path = NULL, nesting = NULL, postfix = NULL, overwrite = FALSE){
     # Checking predicaments
@@ -24,7 +22,7 @@ save_locally <- function(df, local_path = NULL, nesting = NULL, postfix = NULL, 
                 !is.null(dir),
                 !is.null(nesting),
                 !is.null(postfix),
-                tibble::has_name(df, !!nesting),
+                rlang::has_name(df, !!nesting),
                 !(dir.exists(dir) & overwrite == FALSE))
     # Create a nested tibble
     df_nested <-

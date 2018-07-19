@@ -10,8 +10,6 @@
 #' # Creating default folder structure
 #' create_path_structure(c("research/meta/etraction","research/meta/screening"))
 
-library(dplyr)
-
 create_path_structure <- function(folders = NULL){
     stopifnot(length(folders) > 0)
 
@@ -22,7 +20,7 @@ create_path_structure <- function(folders = NULL){
         stringr::str_split("/", simplify = TRUE) %>%
         tibble::as_tibble() %>%
         # Add an identifier to path so later grouping can be based on separathe paths
-        dplyr::mutate(path_id = row_number()) %>%
+        dplyr::mutate(path_id = dplyr::row_number()) %>%
         # Gather into long format
         tidyr::gather(level, folder, -path_id) %>%
         # Drop empty folder names

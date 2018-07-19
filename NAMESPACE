@@ -1,4 +1,5 @@
 importFrom(magrittr,"%>%")
+importFrom(magrittr,"not")
 importFrom(rlang, "!!!")
 importFrom(rlang, "!!")
 importFrom(rlang, "as_double")

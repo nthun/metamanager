@@ -10,7 +10,7 @@
 
 tidy_kripp <- function(kripp){
     stopifnot(is.list(kripp),
-              tibble::has_name(kripp, c("method","data.level","raters","subjects","value")))
+              rlang::has_name(kripp, c("method","data.level","raters","subjects","value")))
 
     tibble::tibble(
         method = kripp$method,
