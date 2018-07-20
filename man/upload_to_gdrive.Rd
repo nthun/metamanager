@@ -10,6 +10,8 @@ upload_to_gdrive(local_path = NULL, gdrive_path = NULL, overwrite = FALSE)
 \item{local_path}{a full path <chr> that contains .csv-s to upload to gdrive}
 
 \item{gdrive_path}{a full gdrive path <chr>, preferably with / at the end}
+
+\item{overwrite}{overwrite files <lgl>? (default = FALSE)}
 }
 \value{
 no output, this function exerts a side-effect

@@ -10,6 +10,12 @@ correct_categories(to_be_corrected, correct_terms)
 \item{to_be_corrected}{vector containing the strings to be corrected}
 
 \item{correct_terms}{string vector containing the correct terms}
+
+\item{max_dist}{parameter passed down to stringdist::amatch() with a default}
+
+\item{method}{parameter passed down to stringdist::amatch() with a default}
+
+\item{...}{further parameters to be passed down to stringdist::amatch()}
 }
 \value{
 A corrected string vector that can only contain the correct terms
@@ -18,5 +24,6 @@ A corrected string vector that can only contain the correct terms
 Correct strings to pre-defined strings. This is a wrapper for stringdist approimate string matching, where certain parameters are preset, and can be used easily in a tidyverse pipe. Using cosine matching to disregard word order.
 }
 \examples{
-articles \%>\% mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
+articles \%>\%
+ mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
 }

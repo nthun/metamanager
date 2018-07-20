@@ -10,7 +10,7 @@ get_from_gdrive(gdrive_path)
 \item{gdrive_path}{A google drive path where the sheets are stored}
 }
 \value{
-The content of all spreadsheets in the google drive folder, collapsed into one tibble
+The content of all spreadsheets in the google drive folder in one nested tibble
 }
 \description{
 A generic function to get all spreadsheets in a gdrive and collapse them into one object
