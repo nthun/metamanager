@@ -32,7 +32,7 @@ flag_duplicates_by_title <- function(df, title = NULL, max_distance = 4L, ...){
 
     # Remove diagonal and upper triangle to get rid of duplicates
     diag(dist_matrix) <- NA
-    dist_matrix[upper.tri(dist_matrix)] <- NA
+    dist_matrix[lower.tri(dist_matrix)] <- NA
 
     dist_matrix %>%
         as.matrix() %>%

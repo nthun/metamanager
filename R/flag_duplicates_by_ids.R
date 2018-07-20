@@ -27,7 +27,7 @@ flag_duplicates_by_ids <- function(df, keys = NULL){
                                          duplicated(incomparables = NA))) %>%
     # Keep ony the keys and duplicate info
     dplyr::transmute(!!!syms(keys),
-                     duplicate_by_id = 1) %>%
+                     duplicate_by_id = 1L) %>%
     # Join the duplicate info back to the original df, using all keys
     dplyr::left_join(df, ., by = keys) %>%
     # Fill NA with 0-s
