@@ -27,15 +27,16 @@ flag_duplicates_by_title <- function(df, title = NULL, max_distance = 4L, ...){
         df %>%
         dplyr::pull(!!title) %>%
         # stringdistmatrix uses multiple threads by default, and can take a lot of time
+        # Default method for string matching is "osa", which imo works fine for article titles, but somewhat slow
         stringdist::stringdistmatrix(useNames = "strings", ...) %>%
         as.matrix()
 
     # Remove diagonal and upper triangle to get rid of duplicates
+    # I wonder if this could be done in a simpler way (like a parameter)
     diag(dist_matrix) <- NA
     dist_matrix[lower.tri(dist_matrix)] <- NA
 
     dist_matrix %>%
-        as.matrix() %>%
         # Keep rownames and presearve titles as they are
         tibble::as_tibble(rownames = NA) %>%
         tibble::rownames_to_column("title1") %>%
