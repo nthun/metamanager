@@ -10,7 +10,7 @@
 #' @examples
 #' upload_to_gdrive("/temporary_files/", "temp_files/", overwrite = TRUE)
 # TODO: TEST
-# TODO: ? use fs instead of base file handling
+# TODO: Warn and ask if files will be overwritten
 
 upload_to_gdrive <- function(local_path = NULL, gdrive_path = NULL, overwrite = FALSE){
     stopifnot(length(local_path) > 0,
@@ -23,6 +23,7 @@ upload_to_gdrive <- function(local_path = NULL, gdrive_path = NULL, overwrite = 
     drive_list <- safe_drive_ls(gdrive_path)
 
     # Stop if the path contains files and can't overwrite
+    # TODO: Add message that files were not overwritten
     stopifnot((nrow(drive_list$result) > 0) & overwrite == FALSE)
 
     # If the gdrive folder exists, and contains files, and can overwrite, delete all content

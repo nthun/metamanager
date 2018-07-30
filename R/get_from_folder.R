@@ -9,7 +9,8 @@
 #' get_from_folder("Research/meta-analysis12/Extraction1/")
 # TODO: error handling: check if files can be read as csv-s
 
-get_from_folder <- function(local_path = NULL, all_char = TRUE){
+get_from_folder <- function(local_path = NULL,
+                            all_char = TRUE){
 
     files <- list.files(local_path, full.names = TRUE)
 
