@@ -20,19 +20,22 @@ make_id <- function(df,
 
     df %>%
         # Make a temporal id so articles will be groupable after gather
-        mutate(temp_id = dplyr::row_number()) %>%
+        dplyr::mutate(temp_id = dplyr::row_number()) %>%
         # Gather all available identifiers
-        tidyr::gather(identifier, id, dplyr::intersect(names(.), identifier)) %>%
+        tidyr::gather(identifier,
+                      id,
+                      dplyr::intersect(names(.), identifier)) %>%
         tidyr::drop_na(id) %>%
         # Get information about the rank of the identifier
-        dplyr::left_join(id_hierarchy, by = "identifier") %>%
+        dplyr::left_join(id_hierarchy,
+                         by = "identifier") %>%
+        # Keep only the lowest ranking identifier for each article
         dplyr::group_by(temp_id) %>%
-        # Find the best available identifier for the article
-        dplyr::mutate(best_id = min(id_rank)) %>%
+        dplyr::arrange(id_rank) %>%
+        dplyr::slice(1) %>%
         dplyr::ungroup() %>%
-        # Remove all identifiers that are less important
-        dplyr::filter(id_rank == best_id) %>%
-        # Remove clutter and rearrange variables
-        dplyr::select(-id_rank, -best_id, -temp_id) %>%
+        # Remove helper variables
+        dplyr::select(-id_rank, -temp_id) %>%
+        # Rearrange order of columns
         dplyr::select(identifier, id, source, dplyr::everything())
 }
