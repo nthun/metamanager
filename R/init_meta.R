@@ -12,5 +12,5 @@
 
 init_meta <- function(gdrive_path = NULL){
     init_gdrive(gdrive_path)
-    init_meta(gdrive_path)
+    init_team(gdrive_path)
 }
