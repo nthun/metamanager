@@ -2,28 +2,36 @@
 % Please edit documentation in R/assign_articles.R
 \name{assign_articles}
 \alias{assign_articles}
-\title{Assign articles for screening to raters reproducibly}
+\title{Assign (or re-assign) articles to several team members}
 \usage{
-assign_articles(df, team_df, effort_col, reviewers = 2, seed = 1)
+assign_articles(df = NULL, team_df = NULL, effort_col = NULL, reviewers = 2, reassign = FALSE, seed = 1)
 }
 \arguments{
-\item{df}{data frame of articles, should have at least title<str> and abstract<str> columns}
+\item{df}{data frame of articles, should have at least title and abstract columns. If the function is used for re-assigning, then there should be a decision, name, and position column as well.}
 
 \item{team_df}{a data.frame of team members with name<chr>, and one or more effort <dbl> columns}
 
 \item{effort_col}{variable name <chr> in the team file that specifies the effort of members}
 
-\item{reviewers}{Number of team members <num> for each article}
+\item{reviewers}{number of team members <num> for each article}
+
+\item{reassign}{is it a reassigning of studies <lgl>?}
 
 \item{seed}{a random seed <num> for reproducibility}
 }
 \value{
-A data frame that contains the article info with variables to use for manual screening, and the assigned reviewers
+A data frame that contains article data assigned to multiple team members for manual data entry.
 }
 \description{
-Randomly assign articles to two different team members for screening. The function will create files for each team member. The files will contain article data with the first two rows being the decision and reason columns, that can be filled manually during the screening.
+Randomly assign articles to any number of team members for screening. The function will create a nesting variable (reviewer) that can be used to nest and save data.
+}
+\details{
+If the manual coding has already started, and some of the articles have been already processed, reassign = TRUE will preserve the work that has been done, and only assign unprocessed articles.
 }
 \examples{
-# Assign articles for screening to 2 reviewers
-assign_articles(iris, team_df, "screening_effort", reviewer = 2, seed = 1)
+assign_articles(iris, team_df, "screening_effort", reviewer = 2, reassign = FALSE, seed = 1)
+TODO: Create new example with example dataset
+TODO: Refactor to remove redundancy (assigning is there twice)
+TODO: tidyevalize the effort parameter
+TODO: This is not generic enough as it can only be used for screening (decision column). Add "decision" parameter?
 }

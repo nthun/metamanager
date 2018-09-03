@@ -4,7 +4,7 @@
 \alias{flag_duplicates_by_title}
 \title{Flag duplicates by title}
 \usage{
-flag_duplicates_by_title(df, title = NULL, max_distance = 4L, ...)
+flag_duplicates_by_title(df, title = NULL, max_distance = 5L, ...)
 }
 \arguments{
 \item{df}{a data frame with potential duplicates}
@@ -12,8 +12,6 @@ flag_duplicates_by_title(df, title = NULL, max_distance = 4L, ...)
 \item{title}{the <chr> column in df  that has the title of studies}
 
 \item{max_distance}{the maximum difference of titles to be flagged as duplicate}
-
-\item{...}{parameters to be passed to stringdist::stringdistmatrix()}
 }
 \value{
 The original data frame augmented with "duplicate_by_title" column, that can be 0 or 1
@@ -22,10 +20,10 @@ The original data frame augmented with "duplicate_by_title" column, that can be 
 Flags articles in a dataframe that are duplicated and has the same identifier
 }
 \details{
-Note that this function can also be used to find duplicates based on the abstract or any other unique text field. However, this might prove to be slow due to the string distance calculations.
+The function uses Optimal String Alignment distance to find the difference between strings, using the stringdist::stringdist() function (for details, see \code{\link[stringdist]{stringdist-metrics}}). Note that this function can also be used to find duplicates based on the abstract or any other text field. It can be a computationally heavy task for more and longer strings.
 }
 \examples{
-flag_duplicates_by_title(df, "title", max_distance = 3)
+flag_duplicates_by_title(df, "title", max_distance = 5)
 }
 \seealso{
 \code{\link{flag_duplicates_by_ids}} for flagging by ids

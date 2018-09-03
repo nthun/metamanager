@@ -4,7 +4,7 @@
 \alias{get_conversion_fails}
 \title{Checks for coversion errors in a dataframe}
 \usage{
-get_conversion_fails(df, columns, convert_to)
+get_conversion_fails(df, columns = NULL, convert_to = c("integer","double","logical"))
 }
 \arguments{
 \item{df}{data frame}

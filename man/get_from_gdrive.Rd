@@ -4,7 +4,7 @@
 \alias{get_from_gdrive}
 \title{Get sheets from google drive}
 \usage{
-get_from_gdrive(gdrive_path)
+get_from_gdrive(gdrive_path = NULL)
 }
 \arguments{
 \item{gdrive_path}{A google drive path where the sheets are stored}
@@ -13,7 +13,8 @@ get_from_gdrive(gdrive_path)
 The content of all spreadsheets in the google drive folder in one nested tibble
 }
 \description{
-A generic function to get all spreadsheets in a gdrive and collapse them into one object
+Reads all google sheets from a google drive path into one nested data frame
+Authentication in handled by the googledrive package
 }
 \examples{
 get_from_gdrive("Research/meta-analysis12/Extraction1/")
