@@ -1,8 +1,8 @@
 #' Flag duplicates by identifiers
 #'
 #' Flags articles in a dataframe that are duplicated and has the same identifier
-#' @name flag_duplicates_by_ids
-#' @usage flag_duplicates_by_ids(df, keys = NULL)
+#' @name flag_duplicate_id
+#' @usage flag_duplicate_id(df, keys = NULL)
 #'
 #' @param df a data frame with potential duplicates
 #' @param keys a character vector of identifier variables in the data frame
@@ -10,9 +10,9 @@
 #' @return The original data frame is returned with a new column "duplicate_by_id", that can be 0 or 1
 #' @seealso \code{\link{flag_duplicates_by_title}} for flagging by title
 #' @examples
-#' flag_duplicates_by_ids(df, c("doi","pmid","psyid","eid"))
+#' flag_duplicate_id(df, c("doi","pmid","psyid","eid"))
 
-flag_duplicates_by_ids <- function(df, keys = NULL){
+flag_duplicate_id <- function(df, keys = NULL){
 
     stopifnot(is.data.frame(df),
               is.character(keys),

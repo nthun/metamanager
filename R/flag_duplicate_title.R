@@ -1,8 +1,8 @@
 #' Flag duplicates by title
 #'
 #' Flags articles in a dataframe that are duplicated and has the same identifier
-#' @name flag_duplicates_by_title
-#' @usage flag_duplicates_by_title(df, title = NULL, max_distance = 5L, ...)
+#' @name flag_duplicate_title
+#' @usage flag_duplicate_title(df, title = NULL, max_distance = 5L, ...)
 #'
 #' @param df a data frame with potential duplicates
 #' @param title the <chr> column in df  that has the title of studies
@@ -12,9 +12,9 @@
 #' @details The function uses Optimal String Alignment distance to find the difference between strings, using the stringdist::stringdist() function (for details, see \code{\link[stringdist]{stringdist-metrics}}). Note that this function can also be used to find duplicates based on the abstract or any other text field. It can be a computationally heavy task for more and longer strings.
 #' @seealso \code{\link{flag_duplicates_by_ids}} for flagging by ids
 #' @examples
-#' flag_duplicates_by_title(df, "title", max_distance = 5)
+#' flag_duplicate_title(df, "title", max_distance = 5)
 
-flag_duplicates_by_title <- function(df = NULL,
+flag_duplicate_title <- function(df = NULL,
                                      title = "title",
                                      max_distance = 5L){
 
