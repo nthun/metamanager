@@ -29,9 +29,18 @@ Randomly assign articles to any number of team members for screening. The functi
 If the manual coding has already started, and some of the articles have been already processed, reassign = TRUE will preserve the work that has been done, and only assign unprocessed articles.
 }
 \examples{
-assign_articles(iris, team_df, "screening_effort", reviewer = 2, reassign = FALSE, seed = 1)
-TODO: Create new example with example dataset
+library(magrittr)
+library(tibble)
+
+team_df <- tibble(name = c("Tom", "Jerry", "Rose"),
+                  screening_effort = c(.6, .3, .1))
+
+workaholism_pubmed \%>\%
+  # First, keep only one identifier for each article
+  make_id(identifier = c("doi", "pmid")) \%>\%
+  assign_articles(team_df = team_df,
+                  reviewers = 2,
+                  effort_col = "screening_effort")
 TODO: Refactor to remove redundancy (assigning is there twice)
 TODO: tidyevalize the effort parameter
-TODO: This is not generic enough as it can only be used for screening (decision column). Add "decision" parameter?
 }

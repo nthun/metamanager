@@ -17,6 +17,7 @@ Create a folder structure on google drive for a meta-analysis project and a temp
 }
 \examples{
 # Creating default folder structure and team file
+\dontrun{
 init_meta("research/meta")
-# TODO: A bug makes the function to initialize the gdrive_path directory twice, therefor it breaks halfway
+}
 }

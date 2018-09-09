@@ -18,7 +18,12 @@ The original data frame is returned with a new column "duplicate_by_id", that ca
 Flags articles in a dataframe that are duplicated and has the same identifier
 }
 \examples{
-flag_duplicate_id(df, c("doi","pmid","psyid","eid"))
+
+# Show all articles with duplicated ids
+merge_sources(workaholism_psychinfo, workaholism_pubmed, workaholism_scopus,
+           .renames = c("journal" = "publication")) \%>\%
+ flag_duplicate_id(keys = c("psyid", "pmid", "doi", "eid", "sid")) \%>\%
+ filter(duplicate_by_id == 1)
 }
 \seealso{
 \code{\link{flag_duplicates_by_title}} for flagging by title

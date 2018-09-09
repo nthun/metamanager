@@ -16,5 +16,7 @@ The content of all spreadsheets in a local folder in one nested tibble
 Reads all csv-s from a local folder into one nested data frame
 }
 \examples{
+\dontrun{
 get_from_folder("Research/meta-analysis12/Extraction1/")
+}
 }

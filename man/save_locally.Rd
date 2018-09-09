@@ -2,24 +2,11 @@
 % Please edit documentation in R/save_locally.R
 \name{save_locally}
 \alias{save_locally}
-\alias{save_locally}
 \title{Save several files locally based on a nesting variable}
 \usage{
-save_locally(df, local_path = NULL, nesting = NULL, postfix = NULL, overwrite = FALSE)
-
 save_locally(df, local_path, nesting, postfix, overwrite)
 }
 \arguments{
-\item{df}{a full path <chr> that contains .csv-s to upload to gdrive}
-
-\item{local_path}{a full path <chr> where the files will be saved as .csv}
-
-\item{nesting}{variable name <chr> that will used as nesting variable}
-
-\item{postfix}{a string <chr> that will be appended to the end of the file name}
-
-\item{overwrite}{overwrite files <lgl>? (default = FALSE)}
-
 \item{df}{a data frame that should be saved in segments}
 
 \item{local_path}{a full path <chr> where the files will be saved as .csv}
@@ -31,16 +18,17 @@ save_locally(df, local_path, nesting, postfix, overwrite)
 \item{overwrite}{overwrite files <lgl>? (default = FALSE)}
 }
 \value{
-no output, this function exerts a side-effect
-
 No output, this function exerts a side-effect.
 }
 \description{
 Cut a dataframe into several pieces based on a nesting variable, and save these pieces separately in a specified folder with a specified postfix.
-
-Cut a dataframe into several pieces based on a nesting variable, and save these pieces separately in a specified folder with a specified postfix.
 }
 \examples{
-save_locally(articles, "d:/temp/screening/", nesting = "reviewer", postfix = "",overwrite = TRUE)
-save_locally(articles, "d:/temp/screening/", nesting = "reviewer", postfix = "",overwrite = TRUE)
+\dontrun{
+save_locally(articles,
+             "d:/temp/screening/",
+             nesting = "reviewer",
+             postfix = "",
+             overwrite = TRUE)
+}
 }

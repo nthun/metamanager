@@ -21,7 +21,9 @@ Create a template team file on google drive and open it in the browser
 }
 \examples{
 # Creating default folder structure
+\dontrun{
 init_team("research/meta", "My meta-analysis team")
 # Create with default name and without editing in browser
 init_team("research/meta", browse = FALSE)
+}
 }

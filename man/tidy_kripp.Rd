@@ -16,5 +16,5 @@ A tibble containg the values of the Krippendorf's alpha output
 Creates a tidy data frame from Krippendorff's alpha list output
 }
 \examples{
-tidy_kripp(screener_12_kripp)
+
 }

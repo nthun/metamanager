@@ -24,6 +24,31 @@ A corrected string vector that can only contain the correct terms
 Correct strings to pre-defined strings. This is a wrapper for stringdist approimate string matching, where certain parameters are preset, and can be used easily in a tidyverse pipe. Using cosine matching to disregard word order.
 }
 \examples{
-articles \%>\%
- mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
+reasons <- c("sample characteristics",
+             "publication type",
+             "manipulation",
+             "other")
+
+# Create category names with typos
+reasons_with_typo <- c("simple characteristisc",
+                       "publication t",
+                       "manuplation",
+                       "o",
+                       "publicaton type")
+
+# Create a dataset with random correct and incorrect categories in the "reason" column
+df_with_typos <-
+                 workaholism_pubmed \%>\%
+                 mutate(decision = sample(c(0,1), size = nrow(.), replace = TRUE),
+                        reason = if_else(decision == 0,
+                                         NA_character_,
+                         # Mix correct and incorrect categories
+                                         sample(c(reasons, reasons_with_typo),
+                                                size = nrow(.),
+                                                replace = TRUE)
+                                 )
+                 )
+
+# The typos are corrected in a new column
+mutate(df_with_typos, corrected_reason = correct_categories(reason, reasons))
 }

@@ -20,5 +20,9 @@ no output, this function exerts a side-effect
 The function reads all files from a google drive folder and copies the files to a gdrive folder
 }
 \examples{
-upload_to_gdrive("/temporary_files/", "temp_files/", overwrite = TRUE)
+\dontrun{
+upload_to_gdrive("/temporary_files/",
+                 "temp_files/",
+                 overwrite = TRUE)
+}
 }

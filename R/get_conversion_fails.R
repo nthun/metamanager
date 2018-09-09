@@ -10,7 +10,7 @@
 #'
 #' @return A tibble that shows all conversion errors for a type
 #' @examples
-#'
+#'\dontrun{
 #'df <-
 #'  tibble::tibble(file = c("file1", "file1", "file2", "file2", "file2"),
 #'                 x = c(1,2,"c", 4, "d"),
@@ -21,7 +21,7 @@
 #'get_conversion_fails(df,
 #'                     columns = c("x", "y"),
 #'                     convert_to = "integer")
-#'
+#' }
 #' TODO: change example
 
 # get_conversion_fails <- function(df,

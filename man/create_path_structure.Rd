@@ -20,5 +20,5 @@ Create a full hierarchical path structure based on a vector of folder names with
 }
 \examples{
 # Creating default folder structure
-create_path_structure(c("research/meta/etraction","research/meta/screening"))
+create_path_structure(c("research/meta/extraction","research/meta/screening"))
 }

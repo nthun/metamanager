@@ -7,7 +7,7 @@
 make_id(df, identifier = c("doi","pmid","psyid"))
 }
 \arguments{
-\item{df}{data frame that has identifiers}
+\item{df}{data frame that has identifiers as separate variables}
 
 \item{identifier}{a vector of identifiers <chr> in decreasing order by importance}
 }
@@ -18,5 +18,6 @@ A data frame without individual id columns, and with new identifier and id colum
 Select the best id based on a pre-defined hierarchy, and keep only that for the article
 }
 \examples{
-make_id(df, c("doi","pmid","psyid"))
+merge_sources(workaholism_pubmed, workaholism_psychinfo) \%>\%
+  make_id(c("psyid", "pmid", "doi", "eid", "sid"))
 }

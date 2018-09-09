@@ -20,5 +20,5 @@ A data frame that contains the article info with empty columns for manual data e
 Add columns to a dataframe that can be used for manual coding
 }
 \examples{
-add_columns(df = iris, columns = c("x","y"), before = FALSE)
+add_columns(df = workaholism_scopus, columns = c("decision","reason"), before = TRUE)
 }

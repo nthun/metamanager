@@ -17,5 +17,7 @@ Reads all google sheets from a google drive path into one nested data frame
 Authentication in handled by the googledrive package
 }
 \examples{
+\dontrun{
 get_from_gdrive("Research/meta-analysis12/Extraction1/")
+}
 }

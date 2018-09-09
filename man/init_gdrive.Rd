@@ -18,8 +18,10 @@ no output, this function exerts a side-effect
 Create a folder structure (default or custom) on google drive for a meta-analysis project
 }
 \examples{
+\dontrun{
 # Creating default folder structure
 init_gdrive("research/meta-analysis/")
 # Creating custom folder structure
 init_gdrive("research/meta-analysis/", c("screening", "extract"))
+}
 }
