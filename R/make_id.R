@@ -7,7 +7,8 @@
 #' @param identifier a vector of identifiers <chr> in decreasing order by importance
 #' @return A data frame without individual id columns, and with new identifier and id columns that contain the best available identifier and the id, respectively
 #' @examples
-#' make_id(df, c("doi","pmid","psyid"))
+#' merge_sources(workaholism_pubmed, workaholism_psychinfo) %>%
+#'   make_id(c("psyid", "pmid", "doi", "eid", "sid"))
 
 make_id <- function(df,
                     identifier = c("doi","pmid","psyid")){
