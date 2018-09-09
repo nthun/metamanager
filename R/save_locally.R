@@ -10,7 +10,13 @@
 #' @param overwrite overwrite files <lgl>? (default = FALSE)
 #' @return No output, this function exerts a side-effect.
 #' @examples
-#' save_locally(articles, "d:/temp/screening/", nesting = "reviewer", postfix = "",overwrite = TRUE)
+#' \dontrun{
+#' save_locally(articles,
+#'              "d:/temp/screening/",
+#'              nesting = "reviewer",
+#'              postfix = "",
+#'              overwrite = TRUE)
+#' }
 # TODO: test!
 # TODO: Make it tidyeval
 

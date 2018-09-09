@@ -8,7 +8,11 @@
 #' @param overwrite overwrite files <lgl>? (default = FALSE)
 #' @return no output, this function exerts a side-effect
 #' @examples
-#' upload_to_gdrive("/temporary_files/", "temp_files/", overwrite = TRUE)
+#' \dontrun{
+#' upload_to_gdrive("/temporary_files/",
+#'                  "temp_files/",
+#'                  overwrite = TRUE)
+#' }
 # TODO: TEST
 # TODO: Warn and ask if files will be overwritten
 

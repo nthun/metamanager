@@ -7,10 +7,12 @@
 #' @param folders a vector <chr> of folder names to create in path
 #' @return no output, this function exerts a side-effect
 #' @examples
+#' \dontrun{
 #' # Creating default folder structure
 #' init_gdrive("research/meta-analysis/")
 #' # Creating custom folder structure
 #' init_gdrive("research/meta-analysis/", c("screening", "extract"))
+#' }
 
 init_gdrive <-
     function(gdrive_path = NULL,

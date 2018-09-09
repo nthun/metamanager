@@ -6,7 +6,9 @@
 #' @param local_path A google drive path where the sheets are stored
 #' @return The content of all spreadsheets in a local folder in one nested tibble
 #' @examples
+#' \dontrun{
 #' get_from_folder("Research/meta-analysis12/Extraction1/")
+#' }
 # TODO: error handling: check if files can be read as csv-s
 
 get_from_folder <- function(local_path = NULL,

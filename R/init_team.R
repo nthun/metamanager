@@ -9,9 +9,11 @@
 #' @return no output, this function exerts a side-effect
 #' @examples
 #' # Creating default folder structure
+#' \dontrun{
 #' init_team("research/meta", "My meta-analysis team")
 #' # Create with default name and without editing in browser
 #' init_team("research/meta", browse = FALSE)
+#' }
 
 init_team <- function(gdrive_path = NULL, file_name = "meta_team", browse = TRUE){
 

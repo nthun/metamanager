@@ -7,7 +7,9 @@
 #' @param gdrive_path A google drive path where the sheets are stored
 #' @return The content of all spreadsheets in the google drive folder in one nested tibble
 #' @examples
+#' \dontrun{
 #' get_from_gdrive("Research/meta-analysis12/Extraction1/")
+#' }
 # TODO: error handling: check if all files are google sheets
 # TODO: speed up by decreasing the scope of the search somehow
 
