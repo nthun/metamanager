@@ -8,7 +8,7 @@
 #' @param before  <lgl> Should the new variables be in the beginning of new df (default)
 #' @return A data frame that contains the article info with empty columns for manual data entry
 #' @examples
-#' add_columns(df = iris, columns = c("x","y"), before = FALSE)
+#' add_columns(df = workaholism_scopus, columns = c("decision","reason"), before = TRUE)
 
 add_columns <- function(df = NULL, columns = NULL, before = TRUE){
     stopifnot(  is.data.frame(df),
