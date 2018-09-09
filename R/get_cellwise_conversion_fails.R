@@ -13,7 +13,7 @@
 #'                       b = as.double(1:5),
 #'                       c = as.character(c(1:2, letters[1:3])),
 #'                       d = as.character(c(letters[4:5], c(3:5))))
-#' get_cellwise_conversion_fails(df, as_integer)
+#' get_cellwise_conversion_fails(df, rlang::as_integer)
 
 get_cellwise_conversion_fails <- function(df, fun){
 

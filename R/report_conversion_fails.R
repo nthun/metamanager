@@ -1,7 +1,7 @@
 # TODO: make this one single function for all conversion checks that contains all required conversions in one step. May require a list format for columns and funs!
-#' Checks for coversion errors in nested dataframes
+#' Checks for all coversion errors in nested dataframes
 #'
-#' Checks if a specific conversion produces any errors in the nested dfs that has (partly) the same variable names.
+#' Checks if converting the variables to the appropriate conversion produces any errors in the nested dfs
 #' @name report_conversion_fails
 #' @usage report_conversion_fails(df, columns, convert_to)
 #'
@@ -21,8 +21,8 @@
 #'
 #' report_conversion_fails(df, columns = c("x", "y"), convert_to = "integer")
 #' TODO:
-
-report_conversion_fails <- function(df, columns = list(), convert_to = list()){
-
-
-}
+#
+# report_conversion_fails <- function(df, columns = list(), convert_to = list()){
+#
+#
+# }
