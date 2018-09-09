@@ -10,19 +10,49 @@
 #' @param ... further parameters to be passed down to stringdist::amatch()
 #' @return A corrected string vector that can only contain the correct terms
 #' @examples
-#' articles %>%
-#'  mutate(correct_reason = correct_categories(reason, read_lines("vg-meta-reasons.txt")))
+# Create category names that define reasons for exclusion
+#' reasons <- c("sample characteristics",
+#'              "publication type",
+#'              "manipulation",
+#'              "other")
+#'
+#' # Create category names with typos
+#' reasons_with_typo <- c("simple characteristisc",
+#'                        "publication t",
+#'                        "manuplation",
+#'                        "o",
+#'                        "publicaton type")
+#'
+#' # Create a dataset with random correct and incorrect categories in the "reason" column
+#' df_with_typos <-
+#'                  workaholism_pubmed %>%
+#'                  mutate(decision = sample(c(0,1), size = nrow(.), replace = TRUE),
+#'                         reason = if_else(decision == 0,
+#'                                          NA_character_,
+#'                          # Mix correct and incorrect categories
+#'                                          sample(c(reasons, reasons_with_typo),
+#'                                                 size = nrow(.),
+#'                                                 replace = TRUE)
+#'                                  )
+#'                  )
+#'
+#' # The typos are corrected in a new column
+#' mutate(df_with_typos, corrected_reason = correct_categories(reason, reasons))
 
-correct_categories <- function(to_be_corrected, correct_terms, max_dist = 2, method = "cosine", ...) {
-    stopifnot(is.character(to_be_corrected),
-              is.character(correct_terms))
+correct_categories <-
+    function(to_be_corrected,
+             correct_terms,
+             max_dist = 2,
+             method = "cosine",
+             ...) {
+        stopifnot(is.character(to_be_corrected),
+                  is.character(correct_terms))
 
-    correct_terms[stringdist::amatch(
-                        stringr::str_to_lower(to_be_corrected),
-                        stringr::str_to_lower(correct_terms),
-                        maxDist = max_dist,
-                        method = method,
-                        ...
-                     )
-                  ]
-}
+        correct_terms[stringdist::amatch(
+            stringr::str_to_lower(to_be_corrected),
+            stringr::str_to_lower(correct_terms),
+            maxDist = max_dist,
+            method = method,
+            ...
+        )]
+    }
