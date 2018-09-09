@@ -8,7 +8,7 @@
 #' @source Cumulative paste function is based on https://stackoverflow.com/questions/24862046/cumulatively-paste-concatenate-values-grouped-by-another-variable created by https://stackoverflow.com/users/2414948/alexis-laz
 #' @examples
 #' # Creating default folder structure
-#' create_path_structure(c("research/meta/etraction","research/meta/screening"))
+#' create_path_structure(c("research/meta/extraction","research/meta/screening"))
 
 create_path_structure <- function(folders = NULL){
     stopifnot(length(folders) > 0)
