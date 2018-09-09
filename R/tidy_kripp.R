@@ -6,7 +6,7 @@
 #' @param kripp a list object produced by irr::kripp.alpha()
 #' @return A tibble containg the values of the Krippendorf's alpha output
 #' @examples
-#' tidy_kripp(screener_12_kripp)
+#'
 
 tidy_kripp <- function(kripp){
     stopifnot(is.list(kripp),
