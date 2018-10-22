@@ -13,6 +13,7 @@
 #' @export
 #'
 #' @examples
+#' library(dplyr)
 #' merge_sources(workaholism_pubmed, workaholism_psychinfo) %>%
 #'   make_id(c("psyid", "pmid", "doi", "eid", "sid"))
 
