@@ -3,13 +3,14 @@ Title: Manage Meta-analysis Workflow in R
 Version: 0.0.0.9000
 Authors@R: person("Tamas", "Nagy", email = "nagy.tamas@ppk.elte.hu", role = c("aut", "cre"))
 Description: A package for reproducible meta-analysis workflow and file management. Using the package helps to implement the requirements of the PRISMA checklist. The package provides functions for collaborative work through Google drive. The functions can be easily arranged into human readable pipelines using the pipe operator. The package was created with the tidytools manifesto in sight.
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Imports:
     utils (>= 3.5.0),
+    plyr (>= 1.8.4),
     dplyr (>= 0.7.4),
     tidyr (>= 0.8.0),
     readr (>= 1.1.1),
@@ -23,6 +24,7 @@ Imports:
     googlesheets (>= 0.2.2),
     magrittr (>= 1.5),
     stringdist (>= 0.9.4.7),
+    tidystringdist (>= 0.1.2),
     irr (>= 0.84),
     attempt (>= 0.2.1)
 Suggests: 

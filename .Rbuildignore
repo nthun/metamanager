@@ -1,6 +1,6 @@
+^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^data-raw$
-^LICENSE\.md$
 ^\.travis\.yml$
