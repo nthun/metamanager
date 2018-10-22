@@ -2,10 +2,18 @@
 #'
 #' Create a folder structure (default or custom) on google drive for a meta-analysis project
 #' @name init_gdrive
-#' @usage init_gdrive(gdrive_path = NULL, folders = c("literature_search/", "screening/", "screening_consensus/", "fulltext/", "extraction/", "extraction_consensus/"))
+#' @usage init_gdrive(gdrive_path = NULL,
+#'                    folders = c("literature_search/",
+#'                                "screening/",
+#'                                "screening_consensus/",
+#'                                "fulltext/",
+#'                                "extraction/",
+#'                                "extraction_consensus/"))
 #' @param gdrive_path a full (new) gdrive path <chr>, preferably with / at the end
 #' @param folders a vector <chr> of folder names to create in path
 #' @return no output, this function exerts a side-effect
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' # Creating default folder structure

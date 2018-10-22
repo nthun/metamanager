@@ -4,7 +4,7 @@
 \alias{merge_sources}
 \title{Merge data sources}
 \usage{
-function(..., .renames = NULL, .tidy_names = TRUE, .all_char = TRUE)
+merge_sources(..., .renames = NULL, .tidy_names = TRUE, .all_char = TRUE)
 }
 \arguments{
 \item{...}{names of data dataframes to be merged}

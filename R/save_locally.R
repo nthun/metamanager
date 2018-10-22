@@ -9,6 +9,8 @@
 #' @param postfix a string <chr> that will be appended to the end of the file name
 #' @param overwrite overwrite files <lgl>? (default = FALSE)
 #' @return No output, this function exerts a side-effect.
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' save_locally(articles,

@@ -4,7 +4,9 @@
 \alias{correct_categories}
 \title{Match strings with a pre-defined set of strings}
 \usage{
-correct_categories(to_be_corrected, correct_terms)
+correct_categories(to_be_corrected = NULL, correct_terms = NULL,
+max_dist = 2, method =  c("cosine", "osa", "lv", "dl", "hamming",
+"lcs", "qgram", "jaccard", "jw", "soundex"), ...)
 }
 \arguments{
 \item{to_be_corrected}{vector containing the strings to be corrected}
@@ -24,6 +26,7 @@ A corrected string vector that can only contain the correct terms
 Correct strings to pre-defined strings. This is a wrapper for stringdist approimate string matching, where certain parameters are preset, and can be used easily in a tidyverse pipe. Using cosine matching to disregard word order.
 }
 \examples{
+library(dplyr)
 reasons <- c("sample characteristics",
              "publication type",
              "manipulation",

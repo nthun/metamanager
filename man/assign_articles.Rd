@@ -4,7 +4,8 @@
 \alias{assign_articles}
 \title{Assign (or re-assign) articles to several team members}
 \usage{
-assign_articles(df = NULL, team_df = NULL, effort_col = NULL, reviewers = 2, reassign = FALSE, seed = 1)
+assign_articles(df, team_df = NULL, effort_col = NULL,
+reviewers = 2, reassign = FALSE, seed = 1)
 }
 \arguments{
 \item{df}{data frame of articles, should have at least title and abstract columns. If the function is used for re-assigning, then there should be a decision, name, and position column as well.}
@@ -41,6 +42,4 @@ workaholism_pubmed \%>\%
   assign_articles(team_df = team_df,
                   reviewers = 2,
                   effort_col = "screening_effort")
-TODO: Refactor to remove redundancy (assigning is there twice)
-TODO: tidyevalize the effort parameter
 }

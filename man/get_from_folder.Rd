@@ -4,10 +4,12 @@
 \alias{get_from_folder}
 \title{Get csv-s from folder}
 \usage{
-get_from_folder(local_path = NULL)
+get_from_folder(local_path = NULL, all_char = TRUE)
 }
 \arguments{
 \item{local_path}{A google drive path where the sheets are stored}
+
+\item{all_char}{Read all varaibles as characters? (no data loss)}
 }
 \value{
 The content of all spreadsheets in a local folder in one nested tibble

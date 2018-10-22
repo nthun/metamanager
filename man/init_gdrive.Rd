@@ -4,7 +4,13 @@
 \alias{init_gdrive}
 \title{Create folder structure on goodle drive}
 \usage{
-init_gdrive(gdrive_path = NULL, folders = c("literature_search/", "screening/", "screening_consensus/", "fulltext/", "extraction/", "extraction_consensus/"))
+init_gdrive(gdrive_path = NULL,
+                   folders = c("literature_search/",
+                               "screening/",
+                               "screening_consensus/",
+                               "fulltext/",
+                               "extraction/",
+                               "extraction_consensus/"))
 }
 \arguments{
 \item{gdrive_path}{a full (new) gdrive path <chr>, preferably with / at the end}

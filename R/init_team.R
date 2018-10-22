@@ -7,6 +7,8 @@
 #' @param file_name a vector <chr> of folder names to create in path
 #' @param browse should the team file open in the browser? <lgl>
 #' @return no output, this function exerts a side-effect
+#' @export
+#'
 #' @examples
 #' # Creating default folder structure
 #' \dontrun{

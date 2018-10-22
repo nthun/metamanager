@@ -4,10 +4,12 @@
 \alias{get_from_gdrive}
 \title{Get sheets from google drive}
 \usage{
-get_from_gdrive(gdrive_path = NULL)
+get_from_gdrive(gdrive_path = NULL, all_char = TRUE)
 }
 \arguments{
 \item{gdrive_path}{A google drive path where the sheets are stored}
+
+\item{all_char}{Read all varaibles as characters? (no data loss)}
 }
 \value{
 The content of all spreadsheets in the google drive folder in one nested tibble

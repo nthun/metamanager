@@ -3,9 +3,17 @@
 #' Reads all google sheets from a google drive path into one nested data frame
 #' Authentication in handled by the googledrive package
 #' @name get_from_gdrive
-#' @usage get_from_gdrive(gdrive_path = NULL)
+#' @usage get_from_gdrive(gdrive_path = NULL, all_char = TRUE)
 #' @param gdrive_path A google drive path where the sheets are stored
+#' @param all_char Read all varaibles as characters? (no data loss)
 #' @return The content of all spreadsheets in the google drive folder in one nested tibble
+#' @importFrom purrr safely map
+#' @importFrom dplyr transmute
+#' @importFrom googlesheets gs_key gs_read
+#' @importFrom googledrive drive_ls
+#' @importFrom readr cols
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' get_from_gdrive("Research/meta-analysis12/Extraction1/")
@@ -17,7 +25,7 @@ get_from_gdrive <- function(gdrive_path = NULL,
                             all_char = TRUE){
 
     # Run listing safely, so if fails, does not stop the function
-    safe_drive_ls <- purrr::safely(googledrive::drive_ls)
+    safe_drive_ls <- safely(googledrive::drive_ls)
     drive_list <- safe_drive_ls(gdrive_path)
 
     # If there is an error, stop
@@ -25,23 +33,23 @@ get_from_gdrive <- function(gdrive_path = NULL,
 
     # Try to guess the col_types
     if (all_char == FALSE) {
-        dplyr::transmute(drive_list$result,
+        transmute(drive_list$result,
                          file = name,
                          # Try to guess the col_types
-                         sheet = purrr::map(id,
-                                            ~googlesheets::gs_key(.x) %>%
-                                             googlesheets::gs_read(1)
-                                            )
+                         sheet = map(id,
+                                        ~gs_key(.x) %>%
+                                         gs_read(1)
+                                    )
                          )
     }
     if (all_char == TRUE) {
         # All col_types are read as character
-        dplyr::transmute(drive_list$result,
-                         file = name,
-                         sheet = purrr::map(id,
-                                            ~googlesheets::gs_key(.x) %>%
-                                             googlesheets::gs_read(1,
-                                                                   col_types = readr::cols(.default = "c")
+        transmute(drive_list$result,
+                  file = name,
+                  sheet = purrr::map(id,
+                                    ~gs_key(.x) %>%
+                                     gs_read(1,
+                                             col_types = readr::cols(.default = "c")
                                                                   )
                                             )
                          )

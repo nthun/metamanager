@@ -2,7 +2,7 @@
 #'
 #' Merge all sources into a single data frame with tidy names. A named vector can be provided for renaming variables.
 #' @name merge_sources
-#' @usage function(..., .renames = NULL, .tidy_names = TRUE, .all_char = TRUE)
+#' @usage merge_sources(..., .renames = NULL, .tidy_names = TRUE, .all_char = TRUE)
 #'
 #' @param ... names of data dataframes to be merged
 #' @param .renames a named vector that contatins all renames for all datafiles
@@ -11,7 +11,14 @@
 #'
 #' @return a dataframe that contains all data sources from all files
 #' @details For renames, c("new_name" = "old_name") format should be used.
-#' @examples merge_sources(workaholism_psychinfo, workaholism_pubmed, workaholism_scopus,
+#' @importFrom rlang dots_n have_name set_names dots_list
+#' @importFrom purrr map
+#' @importFrom dplyr rename_all mutate_all bind_rows
+#' @importFrom stringr str_to_lower
+#' @export
+#'
+#' @examples
+#' merge_sources(workaholism_psychinfo, workaholism_pubmed, workaholism_scopus,
 #'                         .renames = c(journal = "publication"))
 
 merge_sources <- function(...,
@@ -20,8 +27,8 @@ merge_sources <- function(...,
                           .all_char = TRUE){
 
     # Error handling
-    stopifnot(rlang::dots_n() == 0,
-              (is.null(.renames) | all(rlang::have_name(.renames))),
+    stopifnot(dots_n() == 0,
+              (is.null(.renames) | all(have_name(.renames))),
               is.logical(.tidy_names),
               is.logical(.all_char)
               )
@@ -30,30 +37,27 @@ merge_sources <- function(...,
     if (!is.null(.renames))
     ordered_renames <-
         names(.renames) %>%
-        rlang::set_names(.renames)
+        set_names(.renames)
 
     # Capture dots
-    dts <- rlang::dots_list(...)
+    dts <- dots_list(...)
 
     # Make variable names tidy before merging
     if (isTRUE(.tidy_names))
-        dts <- purrr::map(dts,
-                          ~dplyr::rename_all(.x,
-                                             str_to_lower))
+        dts <- map(dts,
+                   ~rename_all(.x, str_to_lower))
 
     # Convert all variables to character to ensure no information is lost
     if (isTRUE(.all_char))
-        dts <- purrr::map(dts,
-                         ~mutate_all(.x, as.character))
+        dts <- map(dts,
+                   ~mutate_all(.x, as.character))
 
     # Rename variables, if there are any to rename
     if (!is.null(.renames))
-        dts <-
-            purrr::map(dts,
-                       ~plyr::rename(.x, ordered_renames))
+        dts <- map(dts,
+                  ~plyr::rename(.x, ordered_renames))
     # Put everything into one dataframe instead of separate lists
-    dts %>%
-        dplyr::bind_rows()
+    bind_rows(dts)
 }
 
 

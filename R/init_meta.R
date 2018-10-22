@@ -5,6 +5,8 @@
 #' @usage init_meta(gdrive_path = NULL)
 #' @param gdrive_path a full (new) gdrive path <chr>, preferably with / at the end
 #' @return no output, this function exerts a side-effects
+#' @export
+#'
 #' @examples
 #' # Creating default folder structure and team file
 #' \dontrun{

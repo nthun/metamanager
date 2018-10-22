@@ -6,6 +6,8 @@
 #' @param df data frame that has identifiers as separate variables
 #' @param identifier a vector of identifiers <chr> in decreasing order by importance
 #' @return A data frame without individual id columns, and with new identifier and id columns that contain the best available identifier and the id, respectively
+#' @export
+#'
 #' @examples
 #' merge_sources(workaholism_pubmed, workaholism_psychinfo) %>%
 #'   make_id(c("psyid", "pmid", "doi", "eid", "sid"))

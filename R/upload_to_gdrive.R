@@ -7,6 +7,8 @@
 #' @param gdrive_path a full gdrive path <chr>, preferably with / at the end
 #' @param overwrite overwrite files <lgl>? (default = FALSE)
 #' @return no output, this function exerts a side-effect
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' upload_to_gdrive("/temporary_files/",

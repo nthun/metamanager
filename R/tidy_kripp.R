@@ -5,6 +5,8 @@
 #' @usage tidy_kripp(kripp)
 #' @param kripp a list object produced by irr::kripp.alpha()
 #' @return A tibble containg the values of the Krippendorf's alpha output
+#' @export
+#'
 #' @examples
 #'
 
@@ -13,10 +15,10 @@ tidy_kripp <- function(kripp){
               rlang::has_name(kripp, c("method","data.level","raters","subjects","value")))
 
     tibble::tibble(
-        method = kripp$method,
-        level = kripp$data.level,
+        all_items = kripp$subjects,
         raters = kripp$raters,
-        items = kripp$subjects,
-        value = kripp$value
+        method = kripp$method,
+        kr_level = kripp$data.level,
+        kr_alpha = kripp$value
     )
 }
