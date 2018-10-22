@@ -39,13 +39,13 @@ flag_duplicate_id <- function(df,
                                          duplicated(incomparables = NA))) %>%
     # Keep ony the keys and duplicate info
     transmute(!!!syms(keys),
-                     duplicate_by_id = 1L) %>%
+              duplicate_by_id = 1L) %>%
     # Join the duplicate info back to the original df, using all keys
     left_join(df, ., by = keys) %>%
     # Fill NA with 0-s
     mutate(duplicate_by_id = if_else(is.na(duplicate_by_id),
-                                                  0L,
-                                                  duplicate_by_id))
+                                     0L,
+                                     duplicate_by_id))
 }
 
 

@@ -9,6 +9,12 @@
 #' @param postfix a string <chr> that will be appended to the end of the file name
 #' @param overwrite overwrite files <lgl>? (default = FALSE)
 #' @return No output, this function exerts a side-effect.
+#' @importFrom rlang !! has_name sym
+#' @importFrom dplyr group_by pull
+#' @importFrom tidyr nest
+#' @importFrom purrr walk2
+#' @importFrom readr write_excel_csv
+#' @importFrom stringr str_glue
 #' @export
 #'
 #' @examples
@@ -34,23 +40,24 @@ save_locally <-
         !is.null(local_path),
         !is.null(nesting),
         !is.null(postfix),
-        rlang::has_name(df, nesting),
+        has_name(df, nesting),
         !(dir.exists(local_path) & overwrite == FALSE))
 
     # Create a nested tibble
     df_nested <-
         df %>%
-        dplyr::group_by(!!rlang::sym(nesting)) %>%
-        tidyr::nest()
+        group_by(!!sym(nesting)) %>%
+        nest()
 
     # Create the directory
     if (dir.exists(local_path) & overwrite == TRUE) unlink(local_path, recursive = TRUE)
     dir.create(local_path)
 
     # Save the screening files
-    purrr::walk2(dplyr::pull(df_nested, !!rlang::sym(nesting)),
-                 dplyr::pull(df_nested, data),
-                 ~readr::write_excel_csv(x = .y,
-                                         path = stringr::str_glue("{local_path}/{.x}_{postfix}.csv"), na = ""))
-    message(stringr::str_glue("{nrow(df_nested)} files saved in {local_path}"))
+    walk2(pull(df_nested, !!sym(nesting)),
+          pull(df_nested, data),
+          ~write_excel_csv(x = .y,
+                           path = str_glue("{local_path}/{.x}_{postfix}.csv"),
+                           na = ""))
+    message(str_glue("{nrow(df_nested)} files saved in {local_path}"))
 }

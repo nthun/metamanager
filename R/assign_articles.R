@@ -21,7 +21,7 @@
 #' @export
 #'
 #' @examples
-#' library(magrittr)
+#' library(dplyr)
 #' library(tibble)
 #'
 #' team_df <- tibble(name = c("Tom", "Jerry", "Rose"),

@@ -25,7 +25,7 @@ get_from_gdrive <- function(gdrive_path = NULL,
                             all_char = TRUE){
 
     # Run listing safely, so if fails, does not stop the function
-    safe_drive_ls <- safely(googledrive::drive_ls)
+    safe_drive_ls <- safely(drive_ls)
     drive_list <- safe_drive_ls(gdrive_path)
 
     # If there is an error, stop
@@ -37,22 +37,20 @@ get_from_gdrive <- function(gdrive_path = NULL,
                          file = name,
                          # Try to guess the col_types
                          sheet = map(id,
-                                        ~gs_key(.x) %>%
-                                         gs_read(1)
+                                     ~gs_key(.x) %>%
+                                      gs_read(1)
                                     )
-                         )
+                 )
     }
     if (all_char == TRUE) {
         # All col_types are read as character
         transmute(drive_list$result,
                   file = name,
-                  sheet = purrr::map(id,
-                                    ~gs_key(.x) %>%
-                                     gs_read(1,
-                                             col_types = readr::cols(.default = "c")
-                                                                  )
-                                            )
-                         )
+                  sheet = map(id,
+                              ~gs_key(.x) %>%
+                               gs_read(1, col_types = cols(.default = "c"))
+                              )
+                 )
         }
 }
 

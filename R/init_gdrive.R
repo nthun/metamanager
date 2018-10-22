@@ -12,6 +12,9 @@
 #' @param gdrive_path a full (new) gdrive path <chr>, preferably with / at the end
 #' @param folders a vector <chr> of folder names to create in path
 #' @return no output, this function exerts a side-effect
+#' @importFrom purrr safely walk
+#' @importFrom googledrive drive_ls drive_mkdir
+#'
 #' @export
 #'
 #' @examples
@@ -36,7 +39,7 @@ init_gdrive <-
     stopifnot(length(gdrive_path) > 0)
 
     # Run listing safely, so if fails, does not stop the function
-    safe_drive_ls <- purrr::safely(googledrive::drive_ls)
+    safe_drive_ls <- safely(drive_ls)
     drive_list <- safe_drive_ls(gdrive_path)
 
     # Stop if there is en error
@@ -44,7 +47,7 @@ init_gdrive <-
 
     all_path <- paste(gdrive_path, folders, sep = "/")
     all_path <- create_path_structure(all_path)
-    purrr::walk(all_path, ~googledrive::drive_mkdir(name = .x))
+    walk(all_path, ~drive_mkdir(name = .x))
 }
 
 

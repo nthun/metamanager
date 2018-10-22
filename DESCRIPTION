@@ -1,31 +1,41 @@
 Package: metamanager
 Title: Manage Meta-analysis Workflow in R
 Version: 0.0.0.9000
-Authors@R: person("Tamas", "Nagy", email = "nagy.tamas@ppk.elte.hu", role = c("aut", "cre"))
-Description: A package for reproducible meta-analysis workflow and file management. Using the package helps to implement the requirements of the PRISMA checklist. The package provides functions for collaborative work through Google drive. The functions can be easily arranged into human readable pipelines using the pipe operator. The package was created with the tidytools manifesto in sight.
-Depends: R (>= 3.5.0)
+Authors@R: 
+    person(given = "Tamas",
+           family = "Nagy",
+           role = c("aut", "cre"),
+           email = "nagy.tamas@ppk.elte.hu")
+Description: A package for reproducible meta-analysis
+    workflow and file management. Using the package helps to implement the
+    requirements of the PRISMA checklist. The package provides functions
+    for collaborative work through Google drive. The functions can be
+    easily arranged into human readable pipelines using the pipe operator.
+    The package was created with the tidytools manifesto in sight.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.1.0
+Depends: 
+    R (>= 3.5.0)
 Imports:
-    utils (>= 3.5.0),
-    plyr (>= 1.8.4),
+    attempt (>= 0.2.1),
     dplyr (>= 0.7.4),
-    tidyr (>= 0.8.0),
-    readr (>= 1.1.1),
     fs (>= 1.2.2),
-    rlang (>= 0.2.0),
-    tibble (>= 1.4.2),
-    stringr (>= 1.3.1),
-    purrr (>= 0.2.4),
     glue (>= 1.2.0),
     googledrive (>= 0.1.1),
     googlesheets (>= 0.2.2),
-    magrittr (>= 1.5),
-    stringdist (>= 0.9.4.7),
-    tidystringdist (>= 0.1.2),
     irr (>= 0.84),
-    attempt (>= 0.2.1)
+    magrittr (>= 1.5),
+    plyr (>= 1.8.4),
+    purrr (>= 0.2.4),
+    readr (>= 1.1.1),
+    rlang (>= 0.2.0),
+    stringdist (>= 0.9.4.7),
+    stringr (>= 1.3.1),
+    tibble (>= 1.4.2),
+    tidyr (>= 0.8.0),
+    tidystringdist (>= 0.1.2),
+    utils (>= 3.5.0)
 Suggests: 
     testthat (>= 2.0.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0

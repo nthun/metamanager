@@ -11,7 +11,7 @@
 #'
 #' @return a dataframe that contains all data sources from all files
 #' @details For renames, c("new_name" = "old_name") format should be used.
-#' @importFrom rlang dots_n have_name set_names dots_list
+#' @importFrom rlang dots_n has_name have_name set_names dots_list
 #' @importFrom purrr map
 #' @importFrom dplyr rename_all mutate_all bind_rows
 #' @importFrom stringr str_to_lower

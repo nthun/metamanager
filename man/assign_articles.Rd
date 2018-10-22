@@ -30,7 +30,7 @@ Randomly assign articles to any number of team members for screening. The functi
 If the manual coding has already started, and some of the articles have been already processed, reassign = TRUE will preserve the work that has been done, and only assign unprocessed articles.
 }
 \examples{
-library(magrittr)
+library(dplyr)
 library(tibble)
 
 team_df <- tibble(name = c("Tom", "Jerry", "Rose"),
