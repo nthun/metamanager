@@ -4,10 +4,10 @@
 \alias{calculate_agreement}
 \title{Calculate inter-rater agreement statistics beween team members}
 \usage{
-calculate_agreement(articles, decision_col = "decision", kr_method = "nominal")
+calculate_agreement(df, decision_col = "decision", kr_method = "nominal")
 }
 \arguments{
-\item{articles}{a data frame that contains the screened articles, and having a name<chr> column}
+\item{df}{a data frame that contains the screened articles, and having a name<chr> column}
 
 \item{decision_col}{variable name <chr> that defines the decision column (0/1)}
 
@@ -20,5 +20,25 @@ A data frame containing agreement summaries, and the Krippendorff's alpha statis
 Calculate agreement summaries and Krippendorff's alpha for all reviewer pairs. Krippendorff's alpha can be calculated for nominal, ordinal, interval, and ratio scale variables.
 }
 \examples{
-calculate_agreement(articles)
+library(dplyr)
+team_df <- tibble(name = c("Tom", "Jerry", "Rose"),
+                  screening_effort = c(.5, .4, .1))
+
+set.seed(1)
+df <-
+    workaholism_pubmed \%>\%
+    make_id(identifier = c("doi", "pmid")) \%>\%
+    assign_articles(team_df = team_df,
+                    reviewers = 2,
+                    effort_col = "screening_effort") \%>\%
+    # Generate fake screening data
+    mutate(decision = sample(c(0:1, NA_integer_),
+                             prob = c(.6,.3, .1),
+                             size = nrow(.),
+                             replace = TRUE))
+
+calculate_agreement(df, decision_col = "decision")
+}
+\seealso{
+kripp.alpha
 }
