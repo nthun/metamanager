@@ -1,7 +1,7 @@
 Package: metamanager
 Title: Manage Meta-analysis Workflow in R
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person(given = "Tamas",
            family = "Nagy",
            role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Description: A package for reproducible meta-analysis
     easily arranged into human readable pipelines using the pipe operator.
     The package was created with the tidytools manifesto in sight.
 License: MIT + file LICENSE
-Depends: 
+Depends:
     R (>= 3.5.0)
 Imports:
     attempt (>= 0.2.1),
@@ -34,8 +34,12 @@ Imports:
     tidyr (>= 0.8.0),
     tidystringdist (>= 0.1.2),
     utils (>= 3.5.0)
-Suggests: 
-    testthat (>= 2.0.0)
+Suggests:
+    testthat (>= 2.0.0),
+    covr,
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
+VignetteBuilder: knitr

@@ -3,3 +3,4 @@
 .RData
 .httr-oauth
 data-raw/
+inst/doc

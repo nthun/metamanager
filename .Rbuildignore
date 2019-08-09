@@ -4,3 +4,4 @@
 ^\.httr-oauth$
 ^data-raw$
 ^\.travis\.yml$
+^codecov\.yml$
